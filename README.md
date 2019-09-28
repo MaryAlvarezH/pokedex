@@ -1,0 +1,2 @@
+# pokedex
+Prueba técnica Frontend
