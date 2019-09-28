@@ -1,0 +1,5 @@
+<div *ngIf="pokemonData.length>0">
+    <div *ngFor="let pokemon of pokemonData">
+        <app-pokemon-card-view [pokemonData]="pokemon"></app-pokemon-card-view>
+    </div>
+</div>
