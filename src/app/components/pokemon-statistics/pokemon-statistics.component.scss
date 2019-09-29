@@ -1,0 +1,28 @@
+.stat-bars {
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-right: 25%;
+    width: 60px;
+
+    @mixin bar-style($color-status) {
+        height: 5px;
+        width: 100%;
+        background-color: $color-status;
+        margin-bottom: 3px;
+        
+    }
+
+    .active {
+        @include bar-style(#22B3B3);
+
+    }
+    .inactive {
+        @include bar-style(#e8e8e8);
+
+    }
+
+   
+}

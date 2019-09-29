@@ -13,7 +13,6 @@ export class PokeapiService {
     const pokemonData: Array<object> = [];
     const {results} = await this.getPokemonList();
     const pokemonList = results;
-    // console.log('pokemonList', pokemonList);
 
     for (const pokemon of pokemonList) {
       const pokemonDetails = await this.getPokemonDetails(pokemon.url);
@@ -24,7 +23,7 @@ export class PokeapiService {
   }
 
   getPokemonList(): Promise<any> {
-    return this.http.get(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=100`).toPromise();
+    return this.http.get(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=18`).toPromise();
   }
 
   getPokemonDetails(url): Promise<any> {

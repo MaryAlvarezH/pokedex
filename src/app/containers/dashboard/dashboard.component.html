@@ -1,5 +1,58 @@
-<div *ngIf="pokemonData.length>0">
-    <div *ngFor="let pokemon of pokemonData">
-        <app-pokemon-card-view [pokemonData]="pokemon"></app-pokemon-card-view>
+<div class="dashboard-conatiner">
+    <div *ngIf="pokemonList.length>0" class="table-container">
+        <app-pokemon-table [pokemonList]="pokemonList"></app-pokemon-table>
+
+        <!-- <table class="pokemon-table" cellspacing="0">
+            <thead>
+                <tr>
+                    <th scope="col" class="title"></th>
+                    <th scope="col" class="title">name</th>
+                    <th scope="col" class="title">image</th>
+                    <th scope="col" class="title">type</th>
+                    <th scope="col" class="title">height</th>
+                    <th scope="col" class="title">weight</th>
+                    <th scope="col" class="title">experience</th>
+                    <th scope="col" class="title">abilities</th>
+                    <th scope="col" colspan="3" class="title">stats</th>
+                </tr>
+                <tr>
+                    <td colspan="8"></td>
+                    <th class="title">attack</th>
+                    <th class="title">defense</th>
+                    <th class="title">speed</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pokemon of pokemonList | paginate: config">
+                    <td>
+                        <label class="checkbox-group">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </td>
+                    <td>{{pokemon['name']}}</td>
+                    <td><img [src]="pokemon['sprites']['front_default']" [alt]="pokemon['name']" /></td>
+                    <td>
+                        <span *ngFor="let type of pokemon['types']">{{type.type.name}}</span>
+                    </td>
+                    <td>{{pokemon['height']}}</td>
+                    <td>{{pokemon['weight']}}</td>
+                    <td>{{pokemon['base_experience']}}</td>
+                    <td>
+                        <span *ngFor="let ability of pokemon['abilities']">{{ability.ability.name}}</span>
+                    </td>
+                    <td>
+                        <app-pokemon-statistics [baseStat]="pokemon['stats'][4]['base_stat']"></app-pokemon-statistics>
+                    </td>
+                    <td>
+                        <app-pokemon-statistics [baseStat]="pokemon['stats'][3]['base_stat']"></app-pokemon-statistics>
+                    </td>
+                    <td>
+                        <app-pokemon-statistics [baseStat]="pokemon['stats'][0]['base_stat']"></app-pokemon-statistics>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination-controls class="pagination-custon" (pageChange)="pageChanged($event)"></pagination-controls> -->
     </div>
 </div>
