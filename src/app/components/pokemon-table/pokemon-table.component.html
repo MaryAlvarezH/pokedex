@@ -1,21 +1,41 @@
+<div class="search-container">
+    <div class="input-filter">
+        <i class="fa fa-search"></i>
+        <input [ngModel]="currentFilter" (ngModelChange)="onFilterChanged($event)" type="text" placeholder="Search pokemons"  id="filter"/>
+    </div>
+</div>
+
+<div *ngIf="pokemonList.length>0" class="table-header">
+  <div class="legend-resume">
+      <span><strong>{{ pokemonList.length }}</strong></span>
+      <span>Pokemons Found</span>
+  </div>
+  <select class="select-items" [(ngModel)]="config.itemsPerPage" (change)="onItemsPerPageChanged($event.target.value)">
+    <option *ngFor="let items of itemPerPageOptions" [value]=items>
+        Show {{items}}
+    </option>
+  </select>
+</div>
+
+
 <table class="pokemon-table" cellspacing="0">
     <thead>
         <tr>
             <th scope="col" class="title"></th>
-            <th scope="col" class="title">name</th>
+            <th scope="col" class="title" (click)="sortPokemonListBy('name')">name<i class="fa fa-sort"></i></th>
             <th scope="col" class="title">image</th>
-            <th scope="col" class="title">type</th>
-            <th scope="col" class="title">height</th>
-            <th scope="col" class="title">weight</th>
-            <th scope="col" class="title">experience</th>
-            <th scope="col" class="title">abilities</th>
+            <th scope="col" class="title" (click)="sortPokemonListBy('types')">type<i class="fa fa-sort"></i></th>
+            <th scope="col" class="title" (click)="sortPokemonListBy('height')">height<i class="fa fa-sort"></i></th>
+            <th scope="col" class="title" (click)="sortPokemonListBy('weight')">weight<i class="fa fa-sort"></i></th>
+            <th scope="col" class="title" (click)="sortPokemonListBy('base_experience')">experience<i class="fa fa-sort"></i></th>
+            <th scope="col" class="title" (click)="sortPokemonListBy('abilities')">abilities<i class="fa fa-sort"></i></th>
             <th scope="col" colspan="3" class="title">stats</th>
         </tr>
         <tr>
             <td colspan="8"></td>
-            <th class="title">attack</th>
-            <th class="title">defense</th>
-            <th class="title">speed</th>
+            <th class="title" (click)="sortPokemonListBy('attack')">attack<i class="fa fa-sort"></i></th>
+            <th class="title" (click)="sortPokemonListBy('defense')">defense<i class="fa fa-sort"></i></th>
+            <th class="title" (click)="sortPokemonListBy('speed')">speed<i class="fa fa-sort"></i></th>
         </tr>
     </thead>
     <tbody>
@@ -31,8 +51,8 @@
             <td>
                 <span *ngFor="let type of pokemon['types']">{{type.type.name}}</span>
             </td>
-            <td>{{pokemon['height']}}</td>
-            <td>{{pokemon['weight']}}</td>
+            <td>{{pokemon.height / 10}} m</td>
+            <td>{{pokemon.weight / 10}} Kg</td>
             <td>{{pokemon['base_experience']}}</td>
             <td>
                 <span *ngFor="let ability of pokemon['abilities']">{{ability.ability.name}}</span>
@@ -49,7 +69,7 @@
         </tr>
     </tbody>
 </table>
-<div class="footer">
+<div class="footer-table">
   <div class="pagination">
       <pagination-template #p="paginationApi" [id]="config.id" (pageChange)="config.currentPage = $event">
         <div class="custom-pagination">
@@ -71,11 +91,12 @@
       </pagination-template>
   </div>
   <div>
-    <select (change)="pageChanged($event.target.value)" id="dropdown-pagination">
-      <option *ngFor="let page of p.pages" [value]="page.label">{{page.label}}</option>
+    <select class="select-pagination" (change)="onPageChanged($event.target.value)">
+      <option *ngFor="let page of p.pages" 
+      [value]="page.label" 
+      [attr.selected]="config.currentPage==page.label ? true : null"
+      >{{page.label}}</option>
     </select>
-
   </div>
-
 </div>
 

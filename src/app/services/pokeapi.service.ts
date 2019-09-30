@@ -18,7 +18,6 @@ export class PokeapiService {
       const pokemonDetails = await this.getPokemonDetails(pokemon.url);
       pokemonData.push(pokemonDetails);
     }
-    console.log('service', pokemonData);
     return pokemonData;
   }
 

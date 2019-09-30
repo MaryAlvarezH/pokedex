@@ -8,16 +8,16 @@ import { PokeapiService } from '../../services/pokeapi.service';
 })
 export class DashboardComponent implements OnInit {
 
-  public pokemonList: Array<object> = [];
+  public pokemonListData: Array<object> = [];
   constructor(private pokeapiService: PokeapiService) { 
   }
 
   ngOnInit() {
-    this.getPokemonList();
+    this.getpokemonListData();
   }
 
-  async getPokemonList() {
-    this.pokemonList = await this.pokeapiService.getPokemonData();
-    console.log('pokemonList', this.pokemonList)
+  async getpokemonListData() {
+    this.pokemonListData = await this.pokeapiService.getPokemonData();
+    console.log('pokemonListData', this.pokemonListData)
   }
 }
