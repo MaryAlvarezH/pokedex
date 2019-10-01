@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit {
   }
 
   async getpokemonListData() {
-    this.pokemonListData = await this.pokeapiService.getPokemonData();
-    console.log('pokemonListData', this.pokemonListData)
+    await this.pokeapiService.getPokemonData();
   }
 }

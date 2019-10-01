@@ -1,0 +1,53 @@
+<table class="pokemon-table" cellspacing="0">
+    <thead>
+        <tr>
+            <th scope="col" class="title"></th>
+            <th scope="col" class="title" (click)="sortPokemonListBy('id')">No.<i class="fa fa-sort"></i></th>
+            <th scope="col" class="title" (click)="sortPokemonListBy('name')">name<i class="fa fa-sort"></i></th>
+            <th scope="col" class="title">image</th>
+            <th scope="col" class="title" (click)="sortPokemonListBy('types')">type<i class="fa fa-sort"></i></th>
+            <th scope="col" class="title" (click)="sortPokemonListBy('height')">height<i class="fa fa-sort"></i></th>
+            <th scope="col" class="title" (click)="sortPokemonListBy('weight')">weight<i class="fa fa-sort"></i></th>
+            <th scope="col" class="title" (click)="sortPokemonListBy('base_experience')">experience<i class="fa fa-sort"></i></th>
+            <th scope="col" class="title" (click)="sortPokemonListBy('abilities')">abilities<i class="fa fa-sort"></i></th>
+            <th scope="col" colspan="3" class="title">stats</th>
+        </tr>
+        <tr>
+            <td colspan="9"></td>
+            <th class="title" (click)="sortPokemonListBy('attack')">attack<i class="fa fa-sort"></i></th>
+            <th class="title" (click)="sortPokemonListBy('defense')">defense<i class="fa fa-sort"></i></th>
+            <th class="title" (click)="sortPokemonListBy('speed')">speed<i class="fa fa-sort"></i></th>
+        </tr>
+    </thead>
+    <tbody *ngIf="config">
+        <tr *ngFor="let pokemon of pokemonCurrentList | paginate: config">
+            <td>
+                <label class="checkbox-group">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </td>
+            <td>{{pokemon.id}}</td>
+            <td>{{pokemon.name}}</td>
+            <td><img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" /></td>
+            <td>
+                <span *ngFor="let type of pokemon['types']">{{type.type.name}}</span>
+            </td>
+            <td>{{pokemon.height / 10}} m</td>
+            <td>{{pokemon.weight / 10}} Kg</td>
+            <td>{{pokemon.base_experience}}</td>
+            <td>
+                <span *ngFor="let ability of pokemon['abilities']">{{ability.ability.name}}</span>
+            </td>
+            <td>
+                <app-statistic-bars [baseStat]="pokemon.stats[4].base_stat"></app-statistic-bars>
+            </td>
+            <td>
+                <app-statistic-bars [baseStat]="pokemon.stats[3].base_stat"></app-statistic-bars>
+            </td>
+            <td>
+                <app-statistic-bars [baseStat]="pokemon.stats[0].base_stat"></app-statistic-bars>
+            </td>
+        </tr>
+    </tbody>
+</table>

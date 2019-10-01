@@ -9,9 +9,12 @@ import { UserSelectionViewComponent } from './components/user-selection-view/use
 import { PokeapiService } from './services/pokeapi.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { PokemonStatisticsComponent } from './components/pokemon-statistics/pokemon-statistics.component';
-import { PokemonTableComponent } from './components/pokemon-table/pokemon-table.component';
+import { StatisticBarsComponent } from './components/pokemon-table/statistic-bars/statistic-bars.component';
+import { DataTableComponent } from './components/pokemon-table/data-table/data-table.component';
 import { FormsModule } from '@angular/forms';
+import { FiltersComponent } from './components/pokemon-table/filters/filters.component';
+import { PaginationComponent } from './components/pokemon-table/pagination/pagination.component';
+import { ConfigTableService } from './services/config-table.service';
 
 @NgModule({
   declarations: [
@@ -19,8 +22,10 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     UserSelectionComponent,
     UserSelectionViewComponent,
-    PokemonStatisticsComponent,
-    PokemonTableComponent
+    StatisticBarsComponent,
+    DataTableComponent,
+    FiltersComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,8 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   providers: [
-    PokeapiService
+    PokeapiService,
+    ConfigTableService
   ],
   bootstrap: [AppComponent]
 })

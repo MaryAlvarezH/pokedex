@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokeapiService {
+
+  public pokemonData$: Subject<Array<object>> = new Subject;
+  public pokemonCurrentList$: Subject<Array<object>> = new Subject;
 
   constructor(private http: HttpClient ) {
   }
@@ -18,7 +22,9 @@ export class PokeapiService {
       const pokemonDetails = await this.getPokemonDetails(pokemon.url);
       pokemonData.push(pokemonDetails);
     }
-    return pokemonData;
+    
+    this.pokemonData$.next(pokemonData);
+    this.pokemonCurrentList$.next(pokemonData);
   }
 
   getPokemonList(): Promise<any> {

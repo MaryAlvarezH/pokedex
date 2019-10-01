@@ -1,5 +1,13 @@
+<div class="subtitle-conatiner">
+    <p>
+        <span class="main-phrase">Escoge hasta 10 pokemones </span>
+        <span>y guardalos en tu propia <strong>pokedex!</strong></span>
+    </p>
+</div>
 <div class="dashboard-conatiner">
-    <div *ngIf="pokemonListData && pokemonListData.length>0" class="table-container">
-        <app-pokemon-table [pokemonListData]="pokemonListData"></app-pokemon-table>
+    <div class="table-container">
+        <app-filters></app-filters>
+        <app-data-table></app-data-table>
+        <app-pagination></app-pagination>
     </div>
 </div>

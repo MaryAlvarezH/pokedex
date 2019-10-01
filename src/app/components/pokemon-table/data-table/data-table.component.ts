@@ -1,28 +1,50 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { PokeapiService } from 'src/app/services/pokeapi.service';
+import { ConfigTableService } from 'src/app/services/config-table.service';
 
 @Component({
-  selector: 'app-pokemon-table',
-  templateUrl: './pokemon-table.component.html',
-  styleUrls: ['./pokemon-table.component.scss']
+  selector: 'app-data-table',
+  templateUrl: './data-table.component.html',
+  styleUrls: ['./data-table.component.scss']
 })
-export class PokemonTableComponent implements OnInit {
-  @Input() pokemonListData
-  public pokemonList = [];
-  config: any;
+export class DataTableComponent implements OnInit, OnDestroy {
+  public pokemonListSubscription: Subscription;
+  public tableConfigSubscription: Subscription;
+  public pokemonListData = []
+  public pokemonCurrentList = [];
+  
+ 
+  public config: any;
   public collection;
-  public itemPerPageOptions;
   public currentOrderByOrder;
 
-  constructor() { }
+  constructor(public pokeapiService: PokeapiService,
+              public configTableService: ConfigTableService ) { }
 
   ngOnInit() {
+    this.pokemonListSubscription = this.pokeapiService.pokemonData$.subscribe((res:any)=> {
+      this.pokemonListData = res;
+    });
+
+    this.pokemonListSubscription = this.pokeapiService.pokemonCurrentList$.subscribe((res:any)=> {
+      this.pokemonCurrentList = res;
+    });
+   
     this.addPaginationConfig();
+  }
+
+  ngOnDestroy(){
+    if(this.pokemonListSubscription !== undefined) {
+      this.pokemonListSubscription.unsubscribe();
+    }
   }
 
   addPaginationConfig() {
     if (this.pokemonListData.length>0) {
-      this.pokemonList = this.pokemonListData;
-      this.loadPaginationConfig();
+      this.pokemonCurrentList = this.pokemonListData;
+      this.configTableService.config.totalItems = this.pokemonCurrentList.length;
+      this.config = this.configTableService.config
     } else {
       setTimeout(()=> {
         this.addPaginationConfig();
@@ -30,52 +52,18 @@ export class PokemonTableComponent implements OnInit {
     }
   }
 
-  loadPaginationConfig() {
-    this.itemPerPageOptions =[5,10,15,30,50,100, this.pokemonList.length]
-    this.collection = { count: this.pokemonList.length, data: this.pokemonList };
-    this.config = {
-      itemsPerPage: 5,
-      currentPage: 1,
-      totalItems: this.collection.count,
-    };
-  }
-
-
-  public onPageChanged(event){
-    this.config.currentPage = event;
-  }
-
-  public onItemsPerPageChanged(event) {
-    if (event === 'All') {
-      event = this.pokemonList.length
-    }
-    this.config.itemsPerPage = event;
-  }
-
-  onFilterChanged(event) {
-    if (event.length>0) {
-      this.pokemonList = this.pokemonListData.filter((pokemon)=>
-        pokemon['name'].includes(event.toLowerCase())
-      );
-    } else {
-      this.pokemonList = this.pokemonListData
-    }
-    this.loadPaginationConfig();
-  }
-
   sortPokemonListBy(property) {
 
     if (this.currentOrderByOrder !== 'asc') {
-      this.pokemonList.sort(this.orderPokemonList(property,'asc'))
+      this.pokemonCurrentList.sort(this.orderPokemonList(property,'asc'))
     } else {
-      this.pokemonList.sort(this.orderPokemonList(property,'desc'))
+      this.pokemonCurrentList.sort(this.orderPokemonList(property,'desc'))
     }
-
     this.config.currentPage=1;
+
   }
 
   orderPokemonList(property, sortOrder){
-
     this.currentOrderByOrder = sortOrder;
 
     let statOrder;

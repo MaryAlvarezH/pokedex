@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-pokemon-statistics',
-  templateUrl: './pokemon-statistics.component.html',
-  styleUrls: ['./pokemon-statistics.component.scss']
+  selector: 'app-statistic-bars',
+  templateUrl: './statistic-bars.component.html',
+  styleUrls: ['./statistic-bars.component.scss']
 })
-export class PokemonStatisticsComponent implements OnInit {
+export class StatisticBarsComponent implements OnInit {
 
   @Input() baseStat: number;
   public attackStatAvg: number;
@@ -36,9 +36,6 @@ export class PokemonStatisticsComponent implements OnInit {
 
       this.barsAvgList.push(barsAvg)
     }
-    // console.log('prom', this.baseStat)
-    // console.log('avg', this.attackStatAvg)
-    // console.log('barList', this.barsAvgList)
   }
 
 }
