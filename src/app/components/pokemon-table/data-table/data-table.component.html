@@ -5,11 +5,11 @@
             <th class="priority-1" (click)="sortPokemonListBy('id')">No.<i class="fa fa-sort"></i></th>
             <th class="priority-1" (click)="sortPokemonListBy('name')">name<i class="fa fa-sort"></i></th>
             <th class="priority-1">image</th>
-            <th class="priority-3" (click)="sortPokemonListBy('types')">type<i class="fa fa-sort"></i></th>
+            <th class="priority-3">type</th>
             <th class="priority-5" (click)="sortPokemonListBy('height')">height<i class="fa fa-sort"></i></th>
             <th class="priority-5" (click)="sortPokemonListBy('weight')">weight<i class="fa fa-sort"></i></th>
             <th class="priority-4" (click)="sortPokemonListBy('base_experience')">exp<i class="fa fa-sort"></i></th>
-            <th class="priority-4" (click)="sortPokemonListBy('abilities')">abilities<i class="fa fa-sort"></i></th>
+            <th class="priority-4">abilities</th>
             <th class="priority-2" (click)="sortPokemonListBy('attack')">attack<i class="fa fa-sort"></i></th>
             <th class="priority-2" (click)="sortPokemonListBy('defense')">defense<i class="fa fa-sort"></i></th>
             <th class="priority-2" (click)="sortPokemonListBy('speed')">speed<i class="fa fa-sort"></i></th>
@@ -19,7 +19,7 @@
         <tr *ngFor="let pokemon of pokemonCurrentList | paginate: config">
             <td class="priority-1">
                 <label class="checkbox-group">
-                    <input type="checkbox">
+                    <input type="checkbox" [value]="pokemon.id" [checked]="pokemon.selected" (change)="onSelectionChanged($event)">
                     <span class="checkmark"></span>
                 </label>
             </td>

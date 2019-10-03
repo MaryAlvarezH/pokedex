@@ -21,11 +21,12 @@ export class PokeapiService {
     for (const pokemon of pokemonList) {
       try {
         const pokemonDetails = await this.getPokemonDetails(pokemon.url);
-        pokemonData.push(pokemonDetails);
+        pokemonData.push({...pokemonDetails, selected: false});
       } catch (error) {
         continue;
       }
     }
+    console.log(pokemonData);
     this.pokemonData$.next(pokemonData);
     this.pokemonCurrentList$.next(pokemonData);
   }
