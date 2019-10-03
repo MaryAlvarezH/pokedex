@@ -19,16 +19,19 @@ export class PokeapiService {
     const pokemonList = results;
 
     for (const pokemon of pokemonList) {
-      const pokemonDetails = await this.getPokemonDetails(pokemon.url);
-      pokemonData.push(pokemonDetails);
+      try {
+        const pokemonDetails = await this.getPokemonDetails(pokemon.url);
+        pokemonData.push(pokemonDetails);
+      } catch (error) {
+        continue;
+      }
     }
-    
     this.pokemonData$.next(pokemonData);
     this.pokemonCurrentList$.next(pokemonData);
   }
 
   getPokemonList(): Promise<any> {
-    return this.http.get(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=18`).toPromise();
+    return this.http.get(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=25`).toPromise();
   }
 
   getPokemonDetails(url): Promise<any> {

@@ -1,11 +1,10 @@
 body {
     background: #F7F7F7;
     font-family: 'Source Sans Pro', sans-serif;
-    color:#7c7c7c;
+    color: #7c7c7c;
     margin: 0;
     padding: 0;
 }
-
 
 @mixin input-style ($width, $height, $align, $font-size) {
     height: $height;
@@ -31,24 +30,46 @@ body {
     }
 }
 
-
 footer {
     height: 60px;
     background-image: linear-gradient(130deg, #45B3B3 0%, #46B7A8 50%, #47BA9D 75%);
     display: flex;
     justify-content: flex-end;
     align-items: center;
-
-    .social {
-        color:#fff;
-       
+    .contact {
+        color: #fff;
         display: flex;
         align-items: center;
         justify-content: space-evenly;
-    }
-
-    i {
-        font-size: 30px!important;
+        padding-right: 20px;
+        i {
+            font-size: 30px!important;
+        }
+        a,
+        span {
+            text-decoration: none;
+            color: #fff;
+            padding: 0 10px;
+            font-size: 16.5px;
+        }
     }
 }
 
+@media screen and (max-width: 415px) {
+    .header {
+        height: 60px !important;
+    }
+    footer {
+        justify-content: center;
+        .contact {
+            padding-right: 0;
+            i {
+                font-size: 20px !important;
+            }
+            a,
+            span {
+                font-size: 13.5px;
+            }
+        }
+    }
+}
