@@ -42,11 +42,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     for (const pokemon of this.pokemonCurrentList) {
           pokemon['selected'] = false;
     }
-    console.log(this.pokemonCurrentList)
     this.pokeapiService.pokemonCurrentList$.next(this.pokemonCurrentList);
     // this.userCurrentCollection = [];
     this.userCollectionService.currentCollection$.next([]);
-    console.log(this.userCurrentCollection)
   }
 
   ngOnDestroy() {

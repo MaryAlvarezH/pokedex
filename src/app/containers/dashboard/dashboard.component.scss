@@ -1,29 +1,30 @@
 @import '../../../styles/styles.scss';
+@import '../../../styles/variables';
 .dashboard-conatiner,
 .selection-container {
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - 90px - 60px);
+    min-height: calc(100vh - 60px - 60px);
     min-width: 320px;
 }
 
 .main-container {
-    background: #ffff;
     margin: 10px 15% 20px 15%;
     border-radius: 5px;
     padding: 10px;
-    box-shadow: 0px 3px 5px 3px #e8e8e8;
+    box-shadow: 0px 3px 5px 3px $medium-grey;
+    background: $white;
 }
 
 .subtitle-conatiner {
-    background-color: #fff;
-    font-size: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 20px 15% 10px 15%;
     border-radius: 5px;
-    box-shadow: 0px 3px 5px 3px #e8e8e8;
+    box-shadow: 0px 3px 5px 3px $medium-grey;
+    background-color: $white;
+    font-size: 18px;
     .main-phrase {
         display: block;
         font-size: 23px;
@@ -31,11 +32,11 @@
 }
 
 .table-container {
-    border: 1px solid #f2f2f2;
-    border-radius: 5px;
     margin: 2%;
     padding: 3%;
-    box-shadow: 0px 1px 2px 0 #f2f2f2;
+    border: 1px solid $light-gray;
+    border-radius: 5px;
+    box-shadow: 0px 1px 2px 0 $light-gray;
 }
 
 .btn-back {
@@ -63,10 +64,6 @@
 @media screen and (max-width: 415px) {
     .main-container {
         margin: 10px 5% 20px 5%;
-    }
-    .dashboard-conatiner,
-    .selection-container {
-        min-height: calc(100vh - 60px - 60px);
     }
     .subtitle-conatiner {
         font-size: 14px;

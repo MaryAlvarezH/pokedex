@@ -1,4 +1,5 @@
 @import '../../../../styles/styles.scss';
+@import '../../../../styles/variables';
 .pagination-container {
     display: flex;
     justify-content: center;
@@ -11,9 +12,9 @@
         .pagination-previous,
         .pagination-next {
             display: inline-block;
-            color: #4AC580;
-            font-size: 14px;
             margin: 0 10px;
+            color: $green;
+            font-size: 14px;
             cursor: pointer;
             .disable {
                 color: #b6d0c2;
@@ -27,10 +28,9 @@
             span {
                 display: block;
                 width: 20px;
-                font-size: 15px;
-                cursor: pointer;
-                color: #4AC580;
+                color: $green;
                 font-size: 14px;
+                cursor: pointer;
             }
             .current-page {
                 color: #2f935b!important;

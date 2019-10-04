@@ -28,7 +28,6 @@ export class PokeapiService {
         continue;
       }
     }
-    console.log(pokemonData);
     this.pokemonData$.next(pokemonData);
     this.pokemonCurrentList$.next(pokemonData);
   }
