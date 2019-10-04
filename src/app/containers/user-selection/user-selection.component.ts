@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-user-selection',
@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-selection.component.scss']
 })
 export class UserSelectionComponent implements OnInit {
-
+  @Input() pokemonSelectedList: Array<object>;
+  public selectedCollection: Array<object>;
   constructor() { }
 
   ngOnInit() {
+    this.selectedCollection = this.pokemonSelectedList;
   }
 
 }

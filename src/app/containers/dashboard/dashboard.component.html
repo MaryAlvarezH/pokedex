@@ -1,4 +1,4 @@
-<section class="dashboard-conatiner">
+<section class="dashboard-conatiner" *ngIf="pokemonSelectedList.length === 0">
     <div class="subtitle-conatiner">
         <p>
             <span class="main-phrase">Escoge hasta 10 pokemones </span>
@@ -11,5 +11,14 @@
             <app-data-table></app-data-table>
             <app-pagination></app-pagination>
         </div>
+    </div>
+    <div class="action-buttons">
+        <button type="submit" class="btn-cancel" (click)="onCancelSelection()">Cancel</button>
+        <button type="submit" class="btn-save" (click)="onSaveCollection()">Save collection</button>
+    </div>
+</section>
+<section class="selection-container" *ngIf="pokemonSelectedList.length">
+    <div class="main-container">
+        <app-user-selection [pokemonSelectedList]="pokemonSelectedList"></app-user-selection>
     </div>
 </section>

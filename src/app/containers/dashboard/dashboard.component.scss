@@ -1,4 +1,6 @@
-.dashboard-conatiner {
+@import '../../../styles/styles.scss';
+.dashboard-conatiner,
+.selection-container {
     display: flex;
     flex-direction: column;
     min-height: calc(100vh - 90px - 60px);
@@ -36,6 +38,19 @@
     box-shadow: 0px 1px 2px 0 #f2f2f2;
 }
 
+.btn-back {
+    background: none;
+    border: none;
+    cursor: pointer;
+    i {
+        color: #c9c9c9;
+    }
+}
+
+.btn-back:focus {
+    outline: 0;
+}
+
 @media screen and (min-width: 416px) and (max-width:570px) {
     .subtitle-conatiner {
         font-size: 16px;
@@ -49,7 +64,8 @@
     .main-container {
         margin: 10px 5% 20px 5%;
     }
-    .dashboard-conatiner {
+    .dashboard-conatiner,
+    .selection-container {
         min-height: calc(100vh - 60px - 60px);
     }
     .subtitle-conatiner {

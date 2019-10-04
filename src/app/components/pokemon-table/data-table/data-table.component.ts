@@ -16,11 +16,8 @@ export class DataTableComponent implements OnInit, OnDestroy {
   public pokemonListData = [];
   public pokemonCurrentList = [];
   public userCollection = [];
-  public pokemonSelectedList: any = [];
-
-
+  public activeSelection = true;
   public config: any;
-  public collection;
   public currentOrderByOrder;
 
   constructor(public pokeapiService: PokeapiService,
@@ -62,20 +59,15 @@ export class DataTableComponent implements OnInit, OnDestroy {
   }
 
   sortPokemonListBy(property) {
-    if (this.pokemonCurrentList[0].selected) {
-    }
-    this.sorted(property);
-    this.populateUserSelection()
-  }
-
-  sorted(property) {
     if (this.currentOrderByOrder !== 'asc') {
       this.pokemonCurrentList.sort(this.orderPokemonList(property, 'asc'));
     } else {
       this.pokemonCurrentList.sort(this.orderPokemonList(property, 'desc'));
     }
     this.config.currentPage = 1;
+    this.populateUserSelection();
   }
+
 
   orderPokemonList(property, sortOrder) {
     if (this.pokemonCurrentList[0].selected) {
@@ -96,9 +88,9 @@ export class DataTableComponent implements OnInit, OnDestroy {
     }
     if (statOrder !== 0 && statOrder !== 3 && statOrder !== 4) {
       if (sortOrder === 'asc') {
-        return (a, b) => a[property] === b[property] ? 0 : a[property] < b[property] ? -1 : 1;
+        return (a, b) => a[property] < b[property] ? -1 : 1;
       }
-      return (a, b) => a[property] === b[property] ? 0 : b[property] < a[property] ? -1 : 1;
+      return (a, b) =>  a[property] > b[property] ? -1 : 1;
 
     }
     if (sortOrder === 'asc') {
@@ -112,32 +104,42 @@ export class DataTableComponent implements OnInit, OnDestroy {
 
     onSelectionChanged(event) {
       const selectedItem = event.target.value;
-      if (event.target.checked && !this.pokemonSelectedList.includes(selectedItem)) {
-          this.pokemonSelectedList.push(selectedItem);
+      if (event.target.checked && !this.userCollection.includes(selectedItem)) {
+          this.userCollection.push(selectedItem);
       }
-      if (!event.target.checked && this.pokemonSelectedList.includes(selectedItem)) {
-        this.pokemonSelectedList.splice(this.pokemonSelectedList.indexOf(selectedItem), 1);
+      if (!event.target.checked && this.userCollection.includes(selectedItem)) {
+        this.userCollection.splice(this.userCollection.indexOf(selectedItem), 1);
       }
-      this.userCollectionService.currentCollection$.next(this.pokemonSelectedList);
+      this.userCollectionService.currentCollection$.next(this.userCollection);
+      this.populateUserSelection();
+      this.updateEnableSelection();
     }
 
     populateUserSelection() {
       if (this.pokemonCurrentList[0].id === 1) {
         for (let i = 0; i < this.pokemonCurrentList.length; i++) {
+          this.pokemonCurrentList[i]['selected'] = false;
           for (const selectedItem of this.userCollection) {
             if (this.pokemonCurrentList[i].id == selectedItem) {
-              this.pokemonCurrentList[i].selected = true;
+              this.pokemonCurrentList[i]['selected'] = true;
             }
           }
         }
       } else {
         for (let i = this.pokemonCurrentList.length - 1; i >= 0; i--) {
+          this.pokemonCurrentList[i]['selected'] = false;
           for (const selectedItem of this.userCollection) {
             if (this.pokemonCurrentList[i].id == selectedItem) {
-              this.pokemonCurrentList[i].selected = true;
+              this.pokemonCurrentList[i]['selected'] = true;
             }
           }
         }
+      }
+    }
+  
+    updateEnableSelection() {
+      if (this.userCollection.length === 10) {
+        this.activeSelection = false;
       }
     }
 }

@@ -1,0 +1,174 @@
+body {
+    background: #F7F7F7;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #7c7c7c;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    height: 90px;
+    background-image: linear-gradient(130deg, #45B3B3 0%, #46B7A8 50%, #47BA9D 75%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .title {
+        font-size: 45px;
+        color: #fff;
+    }
+}
+
+footer {
+    height: 60px;
+    background-image: linear-gradient(130deg, #45B3B3 0%, #46B7A8 50%, #47BA9D 75%);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .contact {
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        padding-right: 20px;
+        i {
+            font-size: 30px!important;
+        }
+        a,
+        span {
+            text-decoration: none;
+            color: #fff;
+            padding: 0 10px;
+            font-size: 16.5px;
+        }
+    }
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 40px;
+    button {
+        margin: 0 10px;
+        cursor: pointer;
+    }
+    .btn-cancel {
+        background: none;
+        border: none;
+        color: #b20000;
+    }
+    .btn-save {
+        background: #3dbf76;
+        border: none;
+        color: #fff;
+        border-radius: 5px;
+        border: none;
+        height: 35px;
+        width: 150px;
+    }
+}
+
+@mixin table-style($width) {
+    text-align: left;
+    width: $width;
+    th {
+        font-weight: 200;
+        text-transform: uppercase;
+        font-size: 12.5px;
+        color: #a3a3a3;
+        min-width: 35px;
+        cursor: pointer;
+        i {
+            margin-left: 8px;
+        }
+    }
+    tbody {
+        box-shadow: 0 0 0 1px #f2f2f2;
+        td {
+            border-bottom: 1pt solid #f2f2f2;
+            text-transform: capitalize;
+            span {
+                display: block;
+                margin: 0;
+                padding: 0
+            }
+            img {
+                width: 80px;
+            }
+        }
+    }
+    .checkbox-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 10px;
+        cursor: pointer;
+        input {
+            opacity: 0;
+        }
+        input:checked~.checkmark {
+            background-color: #4AC580;
+            border: none;
+        }
+        input:checked~.checkmark:after {
+            display: block;
+        }
+        .checkmark {
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            border: 1px solid #a3a3a3;
+            border-radius: 5px;
+        }
+        .checkmark:hover {
+            background-color: #ccc;
+        }
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        .checkmark:after {
+            left: 6px;
+            top: 3px;
+            width: 4px;
+            height: 8px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+    }
+}
+
+@mixin input-style ($width, $height, $align, $font-size) {
+    height: $height;
+    width: $width;
+    color: #8f8f8f;
+    background-color: #fff;
+    border: 1px solid #d4d4d4;
+    border-radius: 5px;
+    text-align-last: $align;
+    padding: 0 10px;
+    font-size: $font-size;
+}
+
+@media screen and (max-width: 415px) {
+    .header {
+        height: 60px !important;
+    }
+    footer {
+        justify-content: center;
+        .contact {
+            padding-right: 0;
+            i {
+                font-size: 20px !important;
+            }
+            a,
+            span {
+                font-size: 13.5px;
+            }
+        }
+    }
+}

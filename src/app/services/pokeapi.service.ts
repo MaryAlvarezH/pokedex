@@ -10,6 +10,8 @@ export class PokeapiService {
   public pokemonData$: Subject<Array<object>> = new Subject;
   public pokemonCurrentList$: Subject<Array<object>> = new Subject;
 
+  public url = `https://pokeapi.co/api/v2/pokemon/`;
+
   constructor(private http: HttpClient ) {
   }
 
@@ -32,7 +34,7 @@ export class PokeapiService {
   }
 
   getPokemonList(): Promise<any> {
-    return this.http.get(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=25`).toPromise();
+    return this.http.get(`${this.url}?offset=0&limit=25`).toPromise();
   }
 
   getPokemonDetails(url): Promise<any> {

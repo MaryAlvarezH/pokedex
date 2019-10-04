@@ -1,4 +1,4 @@
-    @import '../../../../styles.scss';
+    @import '../../../../styles/styles.scss';
     .search-container {
         width: 100%;
         display: flex;
@@ -35,12 +35,16 @@
         width: 100%;
         margin-bottom: 20px;
         span {
-            font-size: 18px;
+            font-size: 17.5px;
             margin-right: 5px;
         }
         .select-items {
             @include input-style(110px, 35px, left, 15px);
         }
+    }
+    
+    .selected-items {
+        font-size: 13.5px !important;
     }
     
     @media screen and (max-width: 970px) and (min-width: 320px) {

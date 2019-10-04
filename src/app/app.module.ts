@@ -1,11 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './containers/dashboard/dashboard.component';
 import { UserSelectionComponent } from './containers/user-selection/user-selection.component';
-import { UserSelectionViewComponent } from './components/user-selection-view/user-selection-view.component';
 import { PokeapiService } from './services/pokeapi.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -21,7 +19,6 @@ import { ConfigTableService } from './services/config-table.service';
     AppComponent,
     DashboardComponent,
     UserSelectionComponent,
-    UserSelectionViewComponent,
     StatisticBarsComponent,
     DataTableComponent,
     FiltersComponent,
